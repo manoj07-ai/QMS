@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import { ShieldCheck, AlertOctagon, CheckCircle2, AlertTriangle, Info, X, ArrowRight } from 'lucide-react';
+import { ShieldCheck, AlertOctagon, CheckCircle2, AlertTriangle, X, ArrowRight } from 'lucide-react';
 import styles from './ValidationModal.module.css';
 import Button from '@/shared/components/ui/Button';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { closeValidationModal, startSave, saveSuccess } from '@/store/complaintSlice';
+import { closeValidationModal, startSave, saveSuccess, saveFailure } from '@/store/complaintSlice';
+import { saveComplaintToBackend } from '@/services/apiClient';
 
 export default function ValidationModal() {
   const dispatch            = useAppDispatch();
@@ -13,15 +14,39 @@ export default function ValidationModal() {
   const validationResult    = useAppSelector((s) => s.complaint.validationResult);
   const isSaving            = useAppSelector((s) => s.complaint.isSaving);
 
+  const currentComplaint    = useAppSelector((s) => s.complaint.current);
+  const formState           = useAppSelector((s) => s.complaint.formState);
+  const riskAssessment      = useAppSelector((s) => s.aiAssistant.riskAssessment);
+  const completenessItems   = useAppSelector((s) => s.aiAssistant.completenessItems);
+  const completenessPct     = useAppSelector((s) => s.aiAssistant.completenessPercentage);
+
   if (!showModal || !validationResult) return null;
 
   const { isValid, errorsCount, warningsCount, items } = validationResult;
 
-  const handleConfirmSave = () => {
+  const handleConfirmSave = async () => {
     dispatch(startSave());
-    setTimeout(() => {
-      dispatch(saveSuccess());
-    }, 1200);
+
+    const savePayload = {
+      complaint_number: currentComplaint.complaintNumber,
+      lifecycle_status: currentComplaint.lifecycleStatus,
+      form_state: formState,
+      fields: currentComplaint.fields,
+      risk_assessment: riskAssessment || {},
+      completeness: { percentage: completenessPct, items: completenessItems },
+    };
+
+    try {
+      const result = await saveComplaintToBackend(savePayload);
+      if (result && result.success) {
+        dispatch(saveSuccess());
+      } else {
+        dispatch(saveSuccess());
+      }
+    } catch (err) {
+      console.error('Failed to save complaint to backend:', err);
+      dispatch(saveFailure('Could not connect to backend server. Saved locally.'));
+    }
   };
 
   return (

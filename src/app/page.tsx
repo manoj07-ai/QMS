@@ -1,7 +1,6 @@
 import Header from '@/shared/components/layout/Header';
 import ComplaintForm from '@/features/complaint/components/ComplaintForm';
 import AIAssistantPanel from '@/features/ai-assistant/components/AIAssistantPanel';
-import ChatAssistant from '@/features/chat/components/ChatAssistant';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -16,10 +15,9 @@ export default function HomePage() {
             <ComplaintForm />
           </div>
 
-          {/* ─── Right Panel — AI Assistant + Chat ─────────── */}
+          {/* ─── Right Panel — AI Intake & AI Chat ──────────── */}
           <div className={styles.rightPanel}>
             <AIAssistantPanel />
-            <ChatAssistant />
           </div>
         </div>
       </main>

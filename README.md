@@ -47,21 +47,21 @@ Leveraging a **stateful multi-agent LangGraph workflow engine** powered by **Gro
 
 ```mermaid
 graph TD
-    A["👤 QA Officer / User"] -->|Upload PDF / Email / Edit Command| B["💻 Next.js 14 Frontend (Redux)"]
-    B -->|REST API Requests (JSON/Multipart)| C["⚡ FastAPI Backend Engine"]
+    A["QA Officer / User"] -->|"Upload PDF / Email / Edit Command"| B["Next.js 14 Frontend"]
+    B -->|"REST API Requests"| C["FastAPI Backend Engine"]
     
     subgraph LangGraph Multi-Agent Pipeline
         C --> D["Node 1: Preprocess & Ingest"]
-        D --> E["Node 2: Extraction Agent (Groq LLM)"]
+        D --> E["Node 2: Extraction Agent"]
         E --> F["Node 3: Validation Agent"]
-        F --> G["Node 4: Risk Assessment Agent (Groq LLM)"]
-        G --> H["Node 5: Summary Agent (Groq LLM)"]
+        F --> G["Node 4: Risk Assessment Agent"]
+        G --> H["Node 5: Summary Agent"]
         H --> I["Node 6: Completeness Agent"]
     end
     
     I --> J["Dual Persistence Layer"]
-    J -->|Primary Cloud| K[("🐘 Supabase PostgreSQL")]
-    J -->|Offline Fallback| L[("📦 SQLite (qcms.db)")]
+    J -->|"Primary Cloud"| K[("Supabase PostgreSQL")]
+    J -->|"Offline Fallback"| L[("SQLite DB")]
 ```
 
 ---

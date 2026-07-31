@@ -1,0 +1,50 @@
+/* ─── Badge ──────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Variants */
+.primary   { background: var(--color-primary-light); color: var(--color-primary); border-color: var(--color-primary-border); }
+.primary .dot { background: var(--color-primary); }
+
+.success   { background: var(--color-success-light); color: #059669; border-color: var(--color-success-border); }
+.success .dot { background: var(--color-success); }
+
+.warning   { background: var(--color-warning-light); color: #D97706; border-color: var(--color-warning-border); }
+.warning .dot { background: var(--color-warning); }
+
+.danger    { background: var(--color-danger-light); color: #DC2626; border-color: var(--color-danger-border); }
+.danger .dot { background: var(--color-danger); }
+
+.info      { background: var(--color-info-light); color: var(--color-info); border-color: var(--color-info-border); }
+.info .dot { background: var(--color-info); }
+
+.neutral   { background: var(--gray-100); color: var(--gray-600); border-color: var(--gray-200); }
+.neutral .dot { background: var(--gray-400); }
+
+/* Sizes */
+.sm { padding: 2px 7px; font-size: 10px; }
+.md { padding: 3px 10px; font-size: var(--font-size-xs); }
+.lg { padding: 4px 12px; font-size: var(--font-size-sm); }
+
+/* Pulse dot for live statuses */
+.pulseDot {
+  animation: pulse 2s ease-in-out infinite;
+}

@@ -1,0 +1,105 @@
+/* ─── Collapsible Section ────────────────────────────────────── */
+.section {
+  border: 1px solid var(--gray-150);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.section:focus-within {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Header ─────────────────────────────────────────────────── */
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+  border-bottom: 1px solid transparent;
+  gap: var(--space-3);
+}
+
+.header:hover { background: var(--gray-50); }
+.headerOpen   { border-bottom-color: var(--gray-100); }
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.iconWrap {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  background: var(--gray-100);
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-base);
+}
+
+.iconComplete {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.titleGroup { min-width: 0; }
+
+.title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--gray-800);
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--gray-400);
+  margin-top: 1px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.completeTag {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-success);
+  letter-spacing: 0.02em;
+}
+
+.chevron {
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen { transform: rotate(180deg); }
+
+/* ─── Content ────────────────────────────────────────────────── */
+.content {
+  transition: height 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contentInner {
+  padding: var(--space-5) var(--space-5) var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}

@@ -1,0 +1,40 @@
+/* ─── Card ───────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid var(--gray-150);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+}
+
+.hoverable:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--gray-200);
+  transform: translateY(-1px);
+}
+
+.noBorder {
+  border-color: transparent;
+}
+
+/* Padding variants */
+.padding-none { padding: 0; }
+.padding-sm   { padding: var(--space-4); }
+.padding-md   { padding: var(--space-5) var(--space-6); }
+.padding-lg   { padding: var(--space-6) var(--space-8); }
+
+/* Sub-components */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.cardBody { flex: 1; }
+
+.divider {
+  height: 1px;
+  background: var(--gray-100);
+  margin: var(--space-4) calc(var(--space-6) * -1);
+}

@@ -1,0 +1,323 @@
+/* ─── Document Upload ────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.fileInput { display: none; }
+
+/* ─── Drop Zone ──────────────────────────────────────────────── */
+.dropzone {
+  border: 2px dashed var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: var(--transition-base);
+  background: var(--gray-50);
+  text-align: center;
+}
+
+.dropzone:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-muted);
+}
+
+.dragging {
+  border-color: var(--color-primary) !important;
+  background: var(--color-primary-muted) !important;
+  transform: scale(1.01);
+}
+
+.dropzoneIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+  box-shadow: var(--shadow-xs);
+  margin-bottom: var(--space-1);
+}
+
+.dragging .dropzoneIcon {
+  color: var(--color-primary);
+  border-color: var(--color-primary-border);
+  background: var(--color-primary-light);
+}
+
+.dropzoneTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.dropzoneSubtitle {
+  font-size: var(--font-size-xs);
+  color: var(--gray-400);
+}
+
+.supportedTypes {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-1);
+}
+
+.typeChip {
+  padding: 2px 8px;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-500);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Divider ────────────────────────────────────────────────── */
+.divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-150);
+}
+
+.dividerText {
+  padding: 0 var(--space-3);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gray-400);
+  letter-spacing: 0.08em;
+}
+
+/* ─── Paste Zone ─────────────────────────────────────────────── */
+.pasteZone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pasteHeader {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.pasteArea {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--gray-700);
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  resize: none;
+  line-height: 1.6;
+  transition: var(--transition-base);
+  outline: none;
+}
+
+.pasteArea::placeholder { color: var(--gray-400); }
+
+.pasteArea:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-ring);
+}
+
+.analyzeBtn {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-base);
+  animation: fadeIn 0.2s ease;
+}
+
+.analyzeBtn:hover { background: var(--color-primary-hover); }
+
+/* ─── Active / Uploaded File Card ────────────────────────────── */
+.activeState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border: 1px solid var(--gray-150);
+  border-radius: var(--radius-lg);
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.fileIcon {
+  width: 34px;
+  height: 34px;
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.fileMeta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fileName {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--gray-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileSubMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  color: var(--gray-500);
+}
+
+.metaDot { color: var(--gray-300); }
+
+.pageChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.fileControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.replaceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.replaceBtn:hover {
+  background: var(--gray-100);
+  color: var(--gray-800);
+  border-color: var(--gray-300);
+}
+
+.clearBtn {
+  width: 26px;
+  height: 26px;
+  background: none;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.clearBtn:hover {
+  background: var(--color-danger-light);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
+}
+
+/* ─── Progress Track & Metrics ───────────────────────────────── */
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 6px;
+  background: var(--gray-150);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.progressActive {
+  background: linear-gradient(90deg, var(--color-primary) 0%, #7C3AED 100%);
+}
+
+.progressComplete { background: var(--color-success); }
+
+.progressMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.extractedMetricsText {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.progressPctVal {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+}

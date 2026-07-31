@@ -1,0 +1,115 @@
+/* ─── Completeness Checker ───────────────────────────────────── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerLeft { display: flex; flex-direction: column; gap: 1px; }
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--gray-400);
+}
+
+.pctBadge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  transition: var(--transition-base);
+}
+
+.pctBadgeDone {
+  background: var(--color-success-light);
+  color: #059669;
+}
+
+/* ─── Section ────────────────────────────────────────────────── */
+.section { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.sectionLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Items ──────────────────────────────────────────────────── */
+.items { display: flex; flex-direction: column; gap: 2px; }
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  transition: var(--transition-fast);
+}
+
+.itemComplete {
+  color: var(--gray-700);
+}
+
+.itemComplete .itemIcon { color: var(--color-success); }
+
+.itemMissing {
+  background: rgba(239,68,68,0.04);
+  color: var(--gray-600);
+}
+
+.itemMissing .itemIcon { color: var(--color-danger); }
+
+.itemOptional {
+  color: var(--gray-400);
+}
+
+.itemOptional .itemIcon { color: var(--gray-300); }
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.itemLabel { flex: 1; font-weight: 500; }
+
+.itemStatus {
+  font-size: 10px;
+  font-weight: 600;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.itemMissing .itemStatus { color: var(--color-danger); opacity: 1; }
+.itemComplete .itemStatus { color: var(--color-success); opacity: 1; }
+
+/* ─── All Done Banner ────────────────────────────────────────── */
+.allDone {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 12px;
+  background: var(--color-success-light);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #059669;
+}

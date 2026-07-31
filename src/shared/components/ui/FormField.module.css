@@ -1,0 +1,124 @@
+/* ─── Form Fields ────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--gray-700);
+  user-select: none;
+}
+
+.required {
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+/* ─── Base Input / Textarea / Select ───────────────────────── */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--gray-800);
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.input,
+.select {
+  height: 36px;
+  padding: 0 12px;
+}
+
+.textarea {
+  padding: 10px 12px;
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}
+
+.input::placeholder,
+.textarea::placeholder { color: var(--gray-400); }
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: var(--gray-300);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-ring);
+  background: #fff !important;
+}
+
+/* Subtle AI-populated highlight until edited */
+.inputAi {
+  background: rgba(239, 246, 255, 0.6) !important;
+  border-color: rgba(147, 197, 253, 0.8) !important;
+  color: var(--gray-800);
+}
+
+/* Error state */
+.inputError {
+  border-color: var(--color-danger) !important;
+  background: var(--color-danger-light);
+}
+
+.inputError:focus {
+  box-shadow: var(--shadow-ring-danger) !important;
+}
+
+/* ─── Select Wrapper ────────────────────────────────────────── */
+.selectWrap {
+  position: relative;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+}
+
+.select { padding-right: 32px; cursor: pointer; }
+
+/* ─── Messages ──────────────────────────────────────────────── */
+.errorText {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  font-weight: 500;
+}
+
+.hintText {
+  font-size: var(--font-size-xs);
+  color: var(--gray-500);
+}
+
+.inputWrap { position: relative; }

@@ -1,0 +1,254 @@
+/* ============================================================
+   QCMS — Global Design System
+   Enterprise SaaS — Inter Font + Design Tokens
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800&display=swap');
+
+/* ─── Design Tokens ──────────────────────────────────────────── */
+:root {
+  /* Colors */
+  --color-primary:        #2563EB;
+  --color-primary-hover:  #1D4ED8;
+  --color-primary-light:  #EFF6FF;
+  --color-primary-muted:  rgba(37, 99, 235, 0.08);
+  --color-primary-border: rgba(37, 99, 235, 0.2);
+
+  --color-success:        #10B981;
+  --color-success-light:  #ECFDF5;
+  --color-success-border: rgba(16, 185, 129, 0.2);
+
+  --color-warning:        #F59E0B;
+  --color-warning-light:  #FFFBEB;
+  --color-warning-border: rgba(245, 158, 11, 0.2);
+
+  --color-danger:         #EF4444;
+  --color-danger-light:   #FEF2F2;
+  --color-danger-border:  rgba(239, 68, 68, 0.2);
+
+  --color-info:           #6366F1;
+  --color-info-light:     #EEF2FF;
+  --color-info-border:    rgba(99, 102, 241, 0.2);
+
+  /* Grays */
+  --gray-50:  #F8FAFC;
+  --gray-75:  #F4F6FA;
+  --gray-100: #F1F5F9;
+  --gray-150: #E8EDF5;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --gray-900: #0F172A;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs:  11px;
+  --font-size-sm:  12px;
+  --font-size-md:  13px;
+  --font-size-base: 14px;
+  --font-size-lg:  15px;
+  --font-size-xl:  16px;
+  --font-size-2xl: 18px;
+  --font-size-3xl: 20px;
+  --font-size-4xl: 24px;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Border Radius */
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs:  0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm:  0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:  0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-lg:  0 10px 30px rgba(15, 23, 42, 0.10), 0 4px 8px rgba(15, 23, 42, 0.06);
+  --shadow-xl:  0 20px 60px rgba(15, 23, 42, 0.12), 0 8px 16px rgba(15, 23, 42, 0.06);
+  --shadow-ring: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  --shadow-ring-danger: 0 0 0 3px rgba(239, 68, 68, 0.15);
+
+  /* Transitions */
+  --transition-fast:   all 0.12s ease;
+  --transition-base:   all 0.2s ease;
+  --transition-slow:   all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --header-height: 60px;
+  --sidebar-width: 0px;
+  --content-max-width: 1440px;
+  --left-panel-ratio: 62%;
+  --right-panel-ratio: 38%;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--gray-800);
+  background-color: var(--gray-50);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--gray-900);
+}
+
+p { line-height: 1.6; }
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+
+/* ─── Focus Styles ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 2000px; }
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: var(--target-width, 100%); }
+}
+
+@keyframes extractionPulse {
+  0%, 100% { background-color: var(--color-primary-muted); }
+  50%       { background-color: rgba(37, 99, 235, 0.15); }
+}
+
+@keyframes streamCursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────── */
+.animate-fade-in    { animation: fadeIn 0.25s ease forwards; }
+.animate-fade-in-up { animation: fadeInUp 0.3s ease forwards; }
+.animate-pulse      { animation: pulse 2s ease-in-out infinite; }
+.animate-spin       { animation: spin 0.8s linear infinite; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── AI Field Highlight ─────────────────────────────────────── */
+.ai-field-highlight {
+  background: var(--color-primary-muted) !important;
+  border-color: var(--color-primary-border) !important;
+  animation: extractionPulse 0s; /* no animation on static view */
+}
+
+.ai-field-highlight:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: var(--shadow-ring) !important;
+}
+
+/* ─── Stream Cursor ──────────────────────────────────────────── */
+.stream-cursor::after {
+  content: '▋';
+  display: inline-block;
+  animation: streamCursor 1s ease-in-out infinite;
+  color: var(--color-primary);
+  font-size: 0.85em;
+  margin-left: 1px;
+}
+
+/* ─── Markdown-like styles for chat ─────────────────────────── */
+.prose strong { font-weight: 600; color: var(--gray-900); }
+.prose ul { padding-left: 1.25rem; }
+.prose li { margin-bottom: 0.25rem; }
+.prose p + p { margin-top: 0.5rem; }

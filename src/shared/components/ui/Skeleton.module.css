@@ -1,0 +1,42 @@
+/* ─── Skeleton ───────────────────────────────────────────────── */
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--gray-100) 0px,
+    var(--gray-150) 80px,
+    var(--gray-100) 160px
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.skeletonText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeletonField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skeletonCard {
+  background: #fff;
+  border: 1px solid var(--gray-150);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.skeletonCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

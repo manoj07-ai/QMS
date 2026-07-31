@@ -15,7 +15,7 @@
 
 **Pharma Complaint AI** is a production-ready, enterprise-grade frontend and backend application built to automate and accelerate customer complaint intake, risk classification, and quality investigation for pharmaceutical active pharmaceutical ingredients (API) and finished dosage forms (FDF).
 
-Leveraging a **stateful multi-agent LangGraph workflow engine** powered by **Groq LLM (`llama-3.3-70b-versatile`)** and a **dual-persistence storage architecture (Supabase PostgreSQL + SQLite)**, the system transforms unstructured complaint documents (PDF, DOCX, EML, TXT) into structured QMS records in seconds.
+Leveraging a **stateful multi-agent LangGraph workflow engine** powered by **Groq LLM (`llama-3.3-70b-versatile`)** and a **live dual-persistence database architecture (Supabase PostgreSQL + SQLite)**, the system transforms unstructured complaint documents (PDF, DOCX, EML, TXT) into structured QMS records in seconds.
 
 ---
 
@@ -24,7 +24,7 @@ Leveraging a **stateful multi-agent LangGraph workflow engine** powered by **Gro
 ### 1. ⚡ Automated AI Document Extraction (9-Step Pipeline)
 - **Multi-Format Ingestion**: Supports PDF lab reports, Word documents, email statements, and raw text.
 - **13 Mandatory QMS Fields**: Automatically extracts customer details, product name, grade/strength, batch number, manufacturing date, expiry date, quantity affected, complaint type, date, description, severity, and priority.
-- **Confidence Scoring**: Evaluates extraction confidence ($>95\%$ auto-populated) with clear visual field highlighting until manually edited.
+- **Confidence Scoring**: Evaluates extraction confidence ($>95\%$ auto-populated) with subtle visual field highlighting until manually verified or edited.
 
 ### 2. 🛡️ Explainable AI Risk Assessment
 - **Multi-Factor Risk Model**: Assigns Risk Levels (`Critical`, `High`, `Medium`, `Low`) based on physical attribute deviations, batch scale impact, formulation category, and storage compliance.
@@ -34,9 +34,9 @@ Leveraging a **stateful multi-agent LangGraph workflow engine** powered by **Gro
 - **Mode 1 — QA Querying**: Answers questions conversationally (*"Why is this High Risk?"*, *"Summarize this complaint"*, *"What information is missing?"*).
 - **Mode 2 — Natural Language Complaint Editing**: Understands user edit commands (*"Change batch number to AMX-2026-B099"*, *"Set quantity affected to 500 units"*), updates only target fields, preserves 100% of all other complaint data, and automatically triggers LangGraph re-evaluation of Risk, Executive Summary, and Completeness.
 
-### 4. 🗄️ Dual-Persistence Architecture
-- **Supabase PostgreSQL**: Enterprise cloud database for multi-tenant production storage (`complaints`, `activity_logs`, `chat_history`, `uploaded_documents`).
-- **Local SQLite Fallback (`qcms.db`)**: Automatic persistent fallback ensuring 100% data persistence across server restarts even without external credentials.
+### 4. 🗄️ Live Supabase Cloud Database + Dual-Persistence Architecture
+- **Supabase Cloud PostgreSQL (`drujlbjahvkdzvechsfu.supabase.co`)**: Connected live enterprise database with **Row Level Security (RLS)** policies enabled across `complaints`, `activity_logs`, `chat_history`, and `uploaded_documents` tables.
+- **Local SQLite Fallback (`qcms.db`)**: Automatic persistent fallback ensuring 100% data persistence across server restarts even without network credentials.
 
 ### 📋 Enterprise QMS Validation Gate
 - Validates 7 mandatory quality rules prior to saving to prevent incomplete submission.
@@ -60,7 +60,7 @@ graph TD
     end
     
     I --> J["Dual Persistence Layer"]
-    J -->|"Primary Cloud"| K[("Supabase PostgreSQL")]
+    J -->|"Primary Cloud DB"| K[("Supabase Cloud PostgreSQL")]
     J -->|"Offline Fallback"| L[("SQLite DB")]
 ```
 
@@ -78,7 +78,7 @@ graph TD
 | **AI Orchestration** | **LangGraph (`langgraph.graph.StateGraph`)**, LangChain Core |
 | **LLM Provider** | **Groq API** (`llama-3.3-70b-versatile` / `llama-3.1-8b-instant`) |
 | **Document Processing** | PyPDF, Python-Multipart |
-| **Database & Persistence** | **Supabase PostgreSQL**, SQLite (`sqlite3`), Pydantic BaseSettings |
+| **Database & Persistence** | **Supabase Cloud PostgreSQL (RLS Enabled)**, SQLite (`sqlite3`), Pydantic BaseSettings |
 
 ---
 
@@ -110,7 +110,7 @@ QCMS/
 │   │   └── main.py                 # FastAPI Application Entrypoint
 │   ├── .env.example                # Backend Environment Template
 │   ├── requirements.txt            # Python Dependencies
-│   └── supabase_schema.sql         # Supabase PostgreSQL DDL Script
+│   └── supabase_schema.sql         # Supabase PostgreSQL DDL Script with RLS
 │
 ├── src/
 │   ├── app/                        # Next.js 14 App Router (layout, page, providers)
@@ -159,7 +159,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Edit `backend/.env` to include your Groq API Key:
+Edit `backend/.env` to include your Groq & Supabase Credentials:
 
 ```env
 PORT=8000
@@ -169,8 +169,8 @@ GROQ_API_KEY=gsk_your_actual_groq_key_here
 GROQ_MODEL=llama-3.3-70b-versatile
 GROQ_FALLBACK_MODEL=llama-3.1-8b-instant
 
-# Optional: Supabase PostgreSQL credentials
-SUPABASE_URL=https://your-project.supabase.co
+# Supabase Cloud PostgreSQL credentials
+SUPABASE_URL=https://drujlbjahvkdzvechsfu.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
 
@@ -202,7 +202,7 @@ npm run dev
 ```
 
 Frontend application will be active at:
-- **Dashboard UI**: `http://localhost:3000` (or `http://localhost:3001`)
+- **Dashboard UI**: `http://localhost:3000`
 
 ---
 
@@ -243,12 +243,12 @@ GET /api/v1/complaints
 
 ---
 
-## 🗄️ Database Setup (Supabase)
+## 🗄️ Database Setup & Row Level Security (Supabase)
 
 To configure Supabase PostgreSQL:
-1. Create a new project in [Supabase](https://supabase.com/).
+1. Log into your project at [Supabase Dashboard](https://supabase.com/dashboard).
 2. Navigate to **SQL Editor** and run the script in [`backend/supabase_schema.sql`](file:///c:/Users/manoj/Desktop/Project/QCMS/backend/supabase_schema.sql).
-3. Copy your project URL and Service Role Key into `backend/.env`.
+3. The DDL script creates all tables and enables **Row Level Security (RLS)** with full-access policies.
 
 ---
 
